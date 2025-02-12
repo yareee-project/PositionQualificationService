@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package com.yaree.proto;
+
+import "google/protobuf/empty.proto";
+
+service PositionService {
+  rpc CreatePosition(CreatePositionMessage) returns (PositionMessage);
+  rpc GetPosition(GetPositionMessage) returns (PositionMessage);
+  rpc GetPositions(GetPositionsMessage) returns (PositionsMessage);
+  rpc UpdatePosition(UpdatePositionMessage) returns (PositionMessage);
+  rpc DeletePosition(GetPositionMessage) returns (google.protobuf.Empty);
+}
+
+message PositionMessage {
+  string id = 1;
+  string title = 2;
+  double hour_rate = 3;
+}
+
+message PositionsMessage {
+  repeated PositionMessage positions = 1;
+}
+
+message UpdatePositionMessage {
+  string id = 1;
+  optional string title = 2;
+  optional double hour_rate = 3;
+}
+
+message CreatePositionMessage {
+  string title = 1;
+  double hour_rate = 2;
+}
+
+message GetPositionMessage {
+  string id = 1;
+}
+
+message GetPositionsMessage {
+  optional string title = 2;
+  optional double min_rate = 3;
+  optional double max_rate = 4;
+}

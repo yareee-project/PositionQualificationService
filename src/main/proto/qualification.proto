@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package com.yaree.proto;
+
+import "google/protobuf/empty.proto";
+
+service QualificationService {
+  rpc CreateQualification(CreateQualificationMessage) returns (QualificationMessage);
+  rpc GetQualification(GetQualificationMessage) returns (QualificationMessage);
+  rpc GetQualifications(GetQualificationsMessage) returns (QualificationsMessage);
+  rpc UpdateQualification(QualificationMessage) returns (QualificationMessage);
+  rpc DeleteQualification(GetQualificationMessage) returns (google.protobuf.Empty);
+}
+
+message QualificationMessage {
+  string id = 1;
+  string title = 2;
+  double multiplier = 3;
+}
+
+message QualificationsMessage {
+  repeated QualificationMessage qualifications = 1;
+}
+
+message CreateQualificationMessage {
+  string title = 1;
+  double multiplier = 2;
+}
+
+message GetQualificationMessage {
+  string id = 1;
+}
+
+message GetQualificationsMessage {
+  string id = 1;
+  string title = 2;
+  double min_multiplier = 3;
+  double max_multiplier = 4;
+}
