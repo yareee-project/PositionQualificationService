@@ -1,6 +1,5 @@
 package com.yaree.service;
 
-import com.github.javafaker.Faker;
 import com.google.protobuf.Empty;
 import com.yaree.proto.Position;
 import com.yaree.proto.PositionServiceGrpc;
@@ -11,17 +10,18 @@ import io.grpc.stub.StreamObserver;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class PositionService extends PositionServiceGrpc.PositionServiceImplBase {
 
-  private final Faker faker = new Faker();
   private final List<Position.PositionMessage> repository = new ArrayList<>();
 
   @Override
   public void createPosition(Position.CreatePositionMessage request, StreamObserver<Position.PositionMessage> responseObserver) {
     var response = Position.PositionMessage.newBuilder()
-        .setId(this.faker.internet().uuid())
+        // TODO: uuid should be provided by db.
+        .setId(UUID.randomUUID().toString())
         .setTitle(request.getTitle())
         .setHourRate(request.getHourRate())
         .build();

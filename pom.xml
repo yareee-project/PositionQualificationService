@@ -24,6 +24,14 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!-- https://mvnrepository.com/artifact/com.google.protobuf/protobuf-bom -->
+            <dependency>
+                <groupId>com.google.protobuf</groupId>
+                <artifactId>protobuf-bom</artifactId>
+                <version>${com.google.protobuf.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -65,11 +73,6 @@
             <artifactId>annotations-api</artifactId>
             <version>${org.apache.tomcat.version}</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.github.javafaker</groupId>
-            <artifactId>javafaker</artifactId>
-            <version>1.0.2</version>
         </dependency>
     </dependencies>
 
@@ -122,8 +125,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>10</source>
-                    <target>10</target>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                 </configuration>
             </plugin>
         </plugins>
